@@ -1,5 +1,9 @@
 <?php
-include db.php;
+include 'db.php';
+
+// select query
+$query = 'SELECT * FROM messages';
+$messages = mysqli_query($connection, $query);
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,8 +25,9 @@ include db.php;
             </div>
             <hr>
             <ul class='messages'>
-                <li>Message 1 | Username 1</li>
-                <li>Message 2 | Username 2</li>
+                <?php while($row = mysqli_fetch_assoc($messages)): ?>
+                    <li><?php echo $row['message'].' | '.$row['user'].': '.$row['dateStamp'] ?></li>
+                <?php endwhile; ?>
             </ul>
         </div>
         <footer>
