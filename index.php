@@ -23,16 +23,16 @@ if(isset($_GET['success'])){
         <div class='container'>
             <header>
                 <h1>Messages app</h1>
-                <div class='alert'>
-                    <?php if($error): ?>
-                        <?php echo $error; ?>
-                    <?php endif; ?>
-                </div>
-                <div class='success'>
-                    <?php if($success): ?>
+                <?php if($error): ?>
+                    <div class='alert'>
+                            <?php echo $error; ?>
+                    </div>
+                <?php endif; ?>
+                <?php if($success): ?>
+                    <div class='success'>
                         <?php echo $success; ?>
-                    <?php endif; ?>
-                </div>
+                    </div>
+                <?php endif; ?>
             </header>
             <div class='main'>
                 <form method='POST' action='process.php'>
