@@ -2,7 +2,7 @@
 include 'db.php';
 
 // select query
-$query = 'SELECT * FROM messages';
+$query = 'SELECT * FROM messages ORDER BY dateStamp DESC';
 $messages = mysqli_query($connection, $query);
 // check for the error message
 if(isset($_GET['error'])){
