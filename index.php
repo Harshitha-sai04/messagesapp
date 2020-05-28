@@ -4,6 +4,10 @@ include 'db.php';
 // select query
 $query = 'SELECT * FROM messages';
 $messages = mysqli_query($connection, $query);
+// check for the error message
+if(isset($_GET['error'])){
+    $error = $_GET['error'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,9 +19,14 @@ $messages = mysqli_query($connection, $query);
         <div class='container'>
             <header>
                 <h1>Messages app</h1>
+                <div class='alert'>
+                    <?php if($error): ?>
+                        <?php echo $error; ?>
+                    <?php endif; ?>
+                </div>
             </header>
             <div class='main'>
-                <form>
+                <form method='POST' action='process.php'>
                     <input type='text' name='message' placeholder='Type your message here'>
                     <input type='text' name='username' placeholder='Input user name'>
                     <input type='submit' value='Submit'>
