@@ -8,6 +8,10 @@ $messages = mysqli_query($connection, $query);
 if(isset($_GET['error'])){
     $error = $_GET['error'];
 }
+// check for the success message
+if(isset($_GET['success'])){
+    $success = $_GET['success'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,6 +26,11 @@ if(isset($_GET['error'])){
                 <div class='alert'>
                     <?php if($error): ?>
                         <?php echo $error; ?>
+                    <?php endif; ?>
+                </div>
+                <div class='success'>
+                    <?php if($success): ?>
+                        <?php echo $success; ?>
                     <?php endif; ?>
                 </div>
             </header>

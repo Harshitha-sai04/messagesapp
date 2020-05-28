@@ -5,5 +5,5 @@ include 'db.php';
 if($_POST['message']=='' || $_POST['username'=='']){
     header("Location: index.php?error=Please%20Fill%20All%20Fields");
 }else{
-    echo 'Submitted';
+    header("Location: index.php?success=Success");
 }
