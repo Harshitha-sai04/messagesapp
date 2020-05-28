@@ -12,6 +12,24 @@ if(isset($_GET['error'])){
 if(isset($_GET['success'])){
     $success = $_GET['success'];
 }
+// for deleting the messages
+if(isset($_GET['action']) && isset($_GET['id'])){
+    if($_GET['action']=='delete'){
+        //echo 'Delete '.$_GET['id'];
+        // get the id
+        $id = $_GET['id'];
+        // make a delete query
+        $deleteQuery = "DELETE FROM messages WHERE id=$id";
+        // check for the connection
+        if(!mysqli_query($connection, $deleteQuery)){
+            // if connection fails
+            die(mysqli_error($connection));
+        }else{
+            header("Location: index.php?success=Message%20Deleted%20Succesfully");
+        }
+
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,7 +62,8 @@ if(isset($_GET['success'])){
             <hr>
             <ul class='messages'>
                 <?php while($row = mysqli_fetch_assoc($messages)): ?>
-                    <li><?php echo $row['message'].' | '.$row['user'].': '.$row['dateStamp'] ?></li>
+                    <li><?php echo $row['message'].' | '.$row['user'].': '.$row['dateStamp'] ?>
+                    <a href="index.php?action=delete&id=<?php echo $row['id']; ?>" style="color:white">[X]</a></li>
                 <?php endwhile; ?>
             </ul>
         </div>
